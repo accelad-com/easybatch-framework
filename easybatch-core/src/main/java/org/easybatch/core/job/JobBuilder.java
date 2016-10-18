@@ -300,7 +300,7 @@ public final class JobBuilder {
     }
 
     /**
-     * Parameter to mute all loggers.
+
      *
      * @param silentMode true to enable silent mode
      * @return the job builder

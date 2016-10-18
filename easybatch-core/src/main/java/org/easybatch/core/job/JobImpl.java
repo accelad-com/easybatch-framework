@@ -34,7 +34,7 @@ import org.easybatch.core.record.Record;
 
 import java.util.ArrayList;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  * Core Easy Batch job implementation.
@@ -43,7 +43,7 @@ import java.util.logging.Logger;
  */
 final class JobImpl implements Job {
 
-    private static final Logger LOGGER = Logger.getLogger(Job.class.getName());
+
 
     private RecordReader recordReader;
     private RecordReadingCallable recordReadingCallable;
@@ -103,7 +103,7 @@ final class JobImpl implements Job {
 
                 //Abort job if timeout is exceeded
                 if (timedOut) {
-                    LOGGER.info("Timeout exceeded: aborting execution");
+
                     break;
                 }
 
@@ -125,7 +125,7 @@ final class JobImpl implements Job {
                     pipeline.process(currentRecord);
                 } catch (RecordProcessingException e) {
                     if (metrics.getErrorCount() >= parameters.getErrorThreshold()) {
-                        LOGGER.info("Error threshold exceeded: aborting execution");
+
                         report.setStatus(JobStatus.ABORTED);
                         report.getMetrics().setLastError(e);
                         break;
@@ -135,7 +135,7 @@ final class JobImpl implements Job {
             metrics.setTotalCount(recordCount);
 
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, "A unexpected error occurred", e);
+
             report.setStatus(JobStatus.FAILED);
             report.getMetrics().setLastError(e);
         } finally {
@@ -165,7 +165,7 @@ final class JobImpl implements Job {
             String dataSourceName = recordReader.getDataSourceName();
             parameters.setDataSource(dataSourceName);
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, "Unable to open the record reader", e);
+
             report.setStatus(JobStatus.FAILED);
             metrics.setLastError(e);
             return false;
@@ -174,13 +174,13 @@ final class JobImpl implements Job {
     }
 
     private void closeRecordReader() {
-        LOGGER.log(Level.INFO, "Stopping job ''{0}''", parameters.getName());
+
         try {
             if (!parameters.isKeepAlive()) {
                 recordReader.close();
             }
         } catch (Exception e) {
-            LOGGER.log(Level.WARNING, "Unable to close the record reader", e);
+
         }
     }
 

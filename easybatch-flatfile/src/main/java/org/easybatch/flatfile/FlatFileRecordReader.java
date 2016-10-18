@@ -36,7 +36,7 @@ import java.nio.charset.Charset;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  * A {@link RecordReader} implementation that read data from a flat file.
@@ -47,7 +47,7 @@ import java.util.logging.Logger;
  */
 public class FlatFileRecordReader implements RecordReader {
 
-    private static final Logger LOGGER = Logger.getLogger(FlatFileRecordReader.class.getName());
+
 
     /**
      * The current read record number.
@@ -131,7 +131,7 @@ public class FlatFileRecordReader implements RecordReader {
                 recordCounterScanner.nextLine();
             }
         } catch (FileNotFoundException e) {
-            LOGGER.log(Level.SEVERE, "Unable to calculate total records number", e);
+
             return null;
         } finally {
             if (recordCounterScanner != null) {

@@ -30,7 +30,7 @@ import org.easybatch.core.record.Record;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 import static org.easybatch.core.util.Utils.checkNotNull;
 
@@ -41,7 +41,7 @@ import static org.easybatch.core.util.Utils.checkNotNull;
  */
 public class JpaTransactionListener implements PipelineListener {
 
-    private static final Logger LOGGER = Logger.getLogger(JpaTransactionListener.class.getSimpleName());
+
 
     private EntityManager entityManager;
 
@@ -75,9 +75,9 @@ public class JpaTransactionListener implements PipelineListener {
             entityManager.flush();
             entityManager.clear();
             transaction.commit();
-            LOGGER.info("Transaction Committed after record " + recordNumber);
+
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, "Unable to commit transaction for record " + recordNumber, e);
+
         }
     }
 
@@ -85,9 +85,9 @@ public class JpaTransactionListener implements PipelineListener {
     public void onRecordProcessingException(final Record record, final Throwable throwable) {
         try {
             transaction.rollback();
-            LOGGER.info("Transaction rolled back after record " + recordNumber);
+
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, "Unable to rollback transaction for record " + recordNumber, e);
+
         }
     }
 

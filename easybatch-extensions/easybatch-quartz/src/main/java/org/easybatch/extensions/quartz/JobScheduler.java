@@ -29,7 +29,7 @@ import org.quartz.impl.StdSchedulerFactory;
 
 import java.util.Date;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 import static org.easybatch.core.util.Utils.checkNotNull;
 import static org.quartz.CronScheduleBuilder.cronSchedule;
@@ -44,7 +44,7 @@ import static org.quartz.TriggerBuilder.newTrigger;
  */
 public class JobScheduler {
 
-    private static final Logger LOGGER = Logger.getLogger(JobScheduler.class.getName());
+
 
     private static final String JOB_NAME_PREFIX = "job-";
 
@@ -101,7 +101,7 @@ public class JobScheduler {
         JobDetail jobDetail = getJobDetail(job, jobName);
 
         try {
-            LOGGER.log(Level.INFO, "Scheduling job {0} to start at {1}", new Object[]{job, startTime});
+
             scheduler.scheduleJob(jobDetail, trigger);
         } catch (SchedulerException e) {
             throw new JobSchedulerException("Unable to schedule job " + job, e);
@@ -137,7 +137,7 @@ public class JobScheduler {
         JobDetail jobDetail = getJobDetail(job, jobName);
 
         try {
-            LOGGER.log(Level.INFO, "Scheduling job {0} to start at {1} and every {2} second(s)", new Object[]{job, startTime, interval});
+
             scheduler.scheduleJob(jobDetail, trigger);
         } catch (SchedulerException e) {
             throw new JobSchedulerException("Unable to schedule job " + job, e);
@@ -169,7 +169,7 @@ public class JobScheduler {
         JobDetail jobDetail = getJobDetail(job, jobName);
 
         try {
-            LOGGER.log(Level.INFO, "Scheduling job {0} with cron expression {1}", new Object[]{job, cronExpression});
+
             scheduler.scheduleJob(jobDetail, trigger);
         } catch (SchedulerException e) {
             throw new JobSchedulerException("Unable to schedule job " + job, e);
@@ -183,7 +183,7 @@ public class JobScheduler {
      * @throws JobSchedulerException thrown if an exception occurs during job unscheduling
      */
     public void unschedule(final org.easybatch.core.job.Job job) throws JobSchedulerException {
-        LOGGER.log(Level.INFO, "Unscheduling job {0} ", job);
+
         try {
             scheduler.unscheduleJob(TriggerKey.triggerKey(TRIGGER_NAME_PREFIX + job.getExecutionId()));
         } catch (SchedulerException e) {

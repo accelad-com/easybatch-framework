@@ -31,7 +31,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 import static org.easybatch.core.util.Utils.checkNotNull;
 
@@ -42,7 +42,7 @@ import static org.easybatch.core.util.Utils.checkNotNull;
  */
 public class HibernateSessionListener implements JobListener {
 
-    private static final Logger LOGGER = Logger.getLogger(HibernateSessionListener.class.getSimpleName());
+
 
     private Session session;
 
@@ -65,11 +65,11 @@ public class HibernateSessionListener implements JobListener {
     public void afterJobEnd(final JobReport jobReport) {
         try {
             if (session != null) {
-                LOGGER.info("Closing session after job end");
+
                 session.close();
             }
         } catch (HibernateException e) {
-            LOGGER.log(Level.SEVERE, "Unable to close session after job end", e);
+
         }
     }
 }

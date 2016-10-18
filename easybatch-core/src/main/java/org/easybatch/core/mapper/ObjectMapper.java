@@ -40,7 +40,7 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 import static java.lang.String.format;
 
@@ -52,9 +52,9 @@ import static java.lang.String.format;
 public class ObjectMapper {
 
     /**
-     * The logger.
+
      */
-    private static final Logger LOGGER = Logger.getLogger(ObjectMapper.class.getName());
+
 
     /**
      * The target domain object class.
@@ -102,26 +102,21 @@ public class ObjectMapper {
 
             Method setter = setters.get(field);
             if (setter == null) {
-                LOGGER.log(Level.WARNING, "No public setter found for field {0}, this field will be set to null (if object type) or default value (if primitive type)", field);
+
                 continue;
             }
 
             Class<?> type = setter.getParameterTypes()[0];
             TypeConverter typeConverter = typeConverters.get(type);
             if (typeConverter == null) {
-                LOGGER.log(Level.WARNING,
-                        "Type conversion not supported for type {0}, field {1} will be set to null (if object type) or default value (if primitive type)",
-                        new Object[]{type, field});
                 continue;
             }
 
             if (value == null) {
-                LOGGER.log(Level.WARNING, "Attempting to convert null to type {0} for field {1}, this field will be set to null (if object type) or default value (if primitive type)", new Object[]{type, field});
                 continue;
             }
 
             if (value.isEmpty()) {
-                LOGGER.log(Level.FINE, "Attempting to convert an empty string to type {0} for field {1}, this field will be ignored", new Object[]{type, field});
                 continue;
             }
 
@@ -205,7 +200,7 @@ public class ObjectMapper {
         Type[] genericInterfaces = typeConverterClass.getGenericInterfaces();
         Type genericInterface = genericInterfaces[0];
         if (!(genericInterface instanceof ParameterizedType)) {
-            LOGGER.log(Level.WARNING, "The type converter {0} should be a parametrized type", typeConverterClass.getName());
+
             return;
         }
         ParameterizedType parameterizedType = (ParameterizedType) genericInterface;

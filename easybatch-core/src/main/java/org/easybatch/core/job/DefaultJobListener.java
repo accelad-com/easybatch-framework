@@ -31,7 +31,7 @@ import org.easybatch.core.retry.RetryPolicy;
 import org.easybatch.core.util.Utils;
 
 import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 import static org.easybatch.core.job.JobParameters.DEFAULT_ERROR_THRESHOLD;
 import static org.easybatch.core.job.JobParameters.DEFAULT_LIMIT;
@@ -45,7 +45,7 @@ import static org.easybatch.core.util.Utils.toMinutes;
  */
 class DefaultJobListener implements JobListener {
 
-    private static final Logger LOGGER = Logger.getLogger(DefaultJobListener.class.getName());
+
 
     private JobImpl job;
 
@@ -56,7 +56,7 @@ class DefaultJobListener implements JobListener {
     @Override
     public void beforeJobStart(final JobParameters jobParameters) {
         if (jobParameters.isSilentMode()) {
-            Utils.muteLoggers();
+
         }
         String dataSource = jobParameters.getDataSource();
         long limit = jobParameters.getLimit();
@@ -65,19 +65,19 @@ class DefaultJobListener implements JobListener {
         String jobName = jobParameters.getName();
         RetryPolicy retryPolicy = jobParameters.getRetryPolicy();
 
-        LOGGER.log(Level.INFO, "Starting job ''{0}''", jobName);
-        LOGGER.log(Level.INFO, "Execution id: {0}", jobParameters.getExecutionId());
-        LOGGER.log(Level.INFO, "Host name: {0}", jobParameters.getHostname());
-        LOGGER.log(Level.INFO, "Data source: {0}", dataSource != null ? dataSource : "N/A");
-        LOGGER.log(Level.INFO, "Reader retry policy: {0}", retryPolicy);
-        LOGGER.log(Level.INFO, "Reader keep alive: {0}", jobParameters.isKeepAlive());
-        LOGGER.log(Level.INFO, "Skip: {0}", jobParameters.getSkip());
-        LOGGER.log(Level.INFO, "Limit: {0}", limit != DEFAULT_LIMIT ? limit : "N/A");
-        LOGGER.log(Level.INFO, "Timeout: {0}", timeout != DEFAULT_TIMEOUT ? toMinutes(timeout) + "m" : "N/A");
-        LOGGER.log(Level.INFO, "Error threshold: {0}", errorThreshold != DEFAULT_ERROR_THRESHOLD ? errorThreshold : "N/A");
-        LOGGER.log(Level.INFO, "Silent mode: {0}", jobParameters.isSilentMode());
-        LOGGER.log(Level.INFO, "Jmx monitoring: {0}", jobParameters.isJmxMonitoring());
-        LOGGER.log(Level.INFO, "Job ''{0}'' started", jobName);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         job.getJobReport().getMetrics().setStartTime(System.currentTimeMillis()); //System.nanoTime() does not allow to have start time (see Javadoc)
         job.getJobReport().setStatus(JobStatus.STARTED);
@@ -100,6 +100,6 @@ class DefaultJobListener implements JobListener {
         if (job.getJobReport().getParameters().isJmxMonitoring()) {
             job.getJobMonitor().notifyJobReportUpdate();
         }
-        LOGGER.log(Level.INFO, "Job ''{0}'' finished with exit status: {1}", new Object[]{jobReport.getParameters().getName(), jobReport.getStatus()});
+
     }
 }

@@ -31,7 +31,7 @@ import org.easybatch.core.listener.JobListener;
 import javax.jms.JMSException;
 import javax.jms.QueueSession;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 import static org.easybatch.core.util.Utils.checkNotNull;
 
@@ -42,7 +42,7 @@ import static org.easybatch.core.util.Utils.checkNotNull;
  */
 public class JmsQueueSessionListener implements JobListener {
 
-    private static final Logger LOGGER = Logger.getLogger(JmsQueueSessionListener.class.getSimpleName());
+
 
     private QueueSession session;
 
@@ -65,11 +65,11 @@ public class JmsQueueSessionListener implements JobListener {
     public void afterJobEnd(final JobReport jobReport) {
         try {
             if (session != null) {
-                LOGGER.info("Closing JMS queue session after job end");
+
                 session.close();
             }
         } catch (JMSException e) {
-            LOGGER.log(Level.SEVERE, "Unable to close JMS queue session after job end", e);
+
         }
     }
 }

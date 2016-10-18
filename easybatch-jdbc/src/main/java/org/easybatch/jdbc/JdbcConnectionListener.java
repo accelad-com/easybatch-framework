@@ -31,7 +31,7 @@ import org.easybatch.core.listener.JobListener;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 import static org.easybatch.core.util.Utils.checkNotNull;
 
@@ -42,7 +42,7 @@ import static org.easybatch.core.util.Utils.checkNotNull;
  */
 public class JdbcConnectionListener implements JobListener {
 
-    private static final Logger LOGGER = Logger.getLogger(JdbcConnectionListener.class.getSimpleName());
+
 
     private Connection connection;
 
@@ -65,11 +65,11 @@ public class JdbcConnectionListener implements JobListener {
     public void afterJobEnd(final JobReport jobReport) {
         try {
             if (connection != null && !connection.isClosed()) {
-                LOGGER.info("Closing connection after job end");
+
                 connection.close();
             }
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Unable to close connection after job end", e);
+
         }
     }
 

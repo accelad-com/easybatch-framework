@@ -31,7 +31,7 @@ import org.easybatch.core.listener.JobListener;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 import static java.lang.String.format;
 import static org.easybatch.core.util.Utils.LINE_SEPARATOR;
@@ -44,7 +44,7 @@ import static org.easybatch.core.util.Utils.checkNotNull;
  */
 public class XmlWrapperTagWriter implements JobListener {
 
-    private static final Logger LOGGER = Logger.getLogger(XmlWrapperTagWriter.class.getSimpleName());
+
 
     private String version = "1.0";
 
@@ -118,7 +118,7 @@ public class XmlWrapperTagWriter implements JobListener {
             outputStreamWriter.write(LINE_SEPARATOR);
             outputStreamWriter.flush();
         } catch (IOException e) {
-            LOGGER.warning("Unable to write XML declaration and wrapper opening tag to the output stream writer");
+
         }
     }
 
@@ -128,12 +128,12 @@ public class XmlWrapperTagWriter implements JobListener {
             outputStreamWriter.write("</" + wrapperTag + ">");
             outputStreamWriter.flush();
         } catch (IOException e) {
-            LOGGER.warning("Unable to write closing wrapper tag to the output stream writer");
+
         } finally {
             try {
                 outputStreamWriter.close();
             } catch (IOException e) {
-                LOGGER.log(Level.WARNING, "Unable to close the output stream writer", e);
+
             }
         }
     }

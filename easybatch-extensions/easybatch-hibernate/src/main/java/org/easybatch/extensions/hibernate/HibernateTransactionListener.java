@@ -30,7 +30,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 import static org.easybatch.core.util.Utils.checkNotNull;
 
@@ -41,7 +41,7 @@ import static org.easybatch.core.util.Utils.checkNotNull;
  */
 public class HibernateTransactionListener implements PipelineListener {
 
-    private static final Logger LOGGER = Logger.getLogger(HibernateTransactionListener.class.getSimpleName());
+
 
     private Session session;
 
@@ -73,9 +73,9 @@ public class HibernateTransactionListener implements PipelineListener {
             session.flush();
             session.clear();
             transaction.commit();
-            LOGGER.info("Transaction committed after record " + recordNumber);
+
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, "Unable to commit transaction after record " + recordNumber, e);
+
         }
     }
 
@@ -83,9 +83,9 @@ public class HibernateTransactionListener implements PipelineListener {
     public void onRecordProcessingException(final Record record, final Throwable throwable) {
         try {
             transaction.rollback();
-            LOGGER.info("Transaction rolled back after record " + recordNumber);
+
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, "Unable to rollback transaction after record " + recordNumber, e);
+
         }
     }
 

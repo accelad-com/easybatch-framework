@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 import static java.lang.String.format;
 import static org.easybatch.core.util.Utils.JMX_MBEAN_NAME;
@@ -49,7 +49,7 @@ public class JobMonitorProxy implements Runnable {
 
     private static final String JMX_SERVICE_URL = "service:jmx:rmi:///jndi/rmi://%s:%s/jmxrmi";
 
-    private static final Logger LOGGER = Logger.getLogger(JobMonitorProxy.class.getName());
+
 
     private String host;
 
@@ -95,9 +95,9 @@ public class JobMonitorProxy implements Runnable {
             JMXConnector jmxConnector = JMXConnectorFactory.connect(url, new HashMap<String, Object>());
             MBeanServerConnection mBeanServerConnection = jmxConnector.getMBeanServerConnection();
             registerNotificationListeners(objectName, mBeanServerConnection, jmxConnector);
-            LOGGER.info("Listening to notifications from " + serviceURL);
+
         } catch (MalformedObjectNameException | IOException | InstanceNotFoundException e) {
-            LOGGER.log(Level.SEVERE, "Unable to listen to job monitoring notifications", e);
+
         }
     }
 

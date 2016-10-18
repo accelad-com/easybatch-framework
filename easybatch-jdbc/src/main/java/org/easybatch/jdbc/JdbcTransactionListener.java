@@ -30,7 +30,7 @@ import org.easybatch.core.record.Record;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 import static org.easybatch.core.util.Utils.checkNotNull;
 
@@ -41,7 +41,7 @@ import static org.easybatch.core.util.Utils.checkNotNull;
  */
 public class JdbcTransactionListener implements PipelineListener {
 
-    private static final Logger LOGGER = Logger.getLogger(JdbcTransactionListener.class.getSimpleName());
+
 
     private Connection connection;
 
@@ -67,9 +67,9 @@ public class JdbcTransactionListener implements PipelineListener {
     public void afterRecordProcessing(final Record inputRecord, final Record outputRecord) {
         try {
             connection.commit();
-            LOGGER.info("Committing transaction after record " + recordNumber);
+
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Unable to commit transaction after record " + recordNumber, e);
+
         }
     }
 
@@ -78,7 +78,7 @@ public class JdbcTransactionListener implements PipelineListener {
         try {
             connection.rollback();
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Unable to rollback transaction after record " + recordNumber, e);
+
         }
     }
 }

@@ -29,7 +29,7 @@ import org.easybatch.core.job.JobReport;
 import org.easybatch.core.listener.JobListener;
 
 import javax.persistence.EntityManager;
-import java.util.logging.Logger;
+
 
 import static org.easybatch.core.util.Utils.checkNotNull;
 
@@ -40,7 +40,7 @@ import static org.easybatch.core.util.Utils.checkNotNull;
  */
 public class JpaEntityManagerListener implements JobListener {
 
-    private static final Logger LOGGER = Logger.getLogger(JpaEntityManagerListener.class.getSimpleName());
+
 
     private EntityManager entityManager;
 
@@ -62,7 +62,7 @@ public class JpaEntityManagerListener implements JobListener {
     @Override
     public void afterJobEnd(final JobReport jobReport) {
         if (entityManager != null) {
-            LOGGER.info("Closing entity manager after job end");
+
             entityManager.close();
         }
     }

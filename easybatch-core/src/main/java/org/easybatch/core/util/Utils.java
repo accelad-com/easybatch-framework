@@ -39,7 +39,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
-import java.util.logging.Logger;
+
 
 import static java.lang.String.format;
 
@@ -50,7 +50,7 @@ import static java.lang.String.format;
  */
 public abstract class Utils {
 
-    private static final Logger LOGGER = Logger.getLogger(Utils.class.getName());
+
 
     public static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
@@ -71,7 +71,7 @@ public abstract class Utils {
                 LogManager.getLogManager().readConfiguration(Utils.class.getResourceAsStream("/logging.properties"));
             }
         } catch (IOException e) {
-            LOGGER.log(Level.WARNING, "Unable to load logging configuration file", e);
+
         }
     }
 
@@ -84,30 +84,9 @@ public abstract class Utils {
         try {
             hostName = InetAddress.getLocalHost().getHostName();
         } catch (UnknownHostException e) {
-            LOGGER.log(Level.WARNING, "Unable to get host name", e);
+
         }
         return hostName;
-    }
-
-    /**
-     * Mute easy batch loggers when silent mode is enabled.
-     */
-    public static void muteLoggers() {
-        Enumeration<String> loggerNames = LogManager.getLogManager().getLoggerNames();
-        while (loggerNames.hasMoreElements()) {
-            String loggerName = loggerNames.nextElement();
-            if (loggerName.startsWith("org.easybatch")) {
-                muteLogger(loggerName);
-            }
-        }
-    }
-
-    private static void muteLogger(String logger) {
-        Logger.getLogger(logger).setUseParentHandlers(false);
-        Handler[] handlers = Logger.getLogger(logger).getHandlers();
-        for (Handler handler : handlers) {
-            Logger.getLogger(logger).removeHandler(handler);
-        }
     }
 
     public static long toMinutes(long milliseconds) {

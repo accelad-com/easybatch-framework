@@ -29,7 +29,7 @@ import org.easybatch.core.filter.RecordFilter;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  * Filter {@link JmsPoisonRecord}.
@@ -38,7 +38,7 @@ import java.util.logging.Logger;
  */
 public class JmsPoisonRecordFilter implements RecordFilter<JmsRecord> {
 
-    private static final Logger LOGGER = Logger.getLogger(JmsPoisonRecordFilter.class.getName());
+
 
     /**
      * Return true if the record should be filtered.
@@ -58,7 +58,7 @@ public class JmsPoisonRecordFilter implements RecordFilter<JmsRecord> {
                 }
             }
         } catch (JMSException e) {
-            LOGGER.log(Level.WARNING, "Unable to get type of JMS message " + payload, e);
+
             return null;
         }
         if (record instanceof JmsPoisonRecord || isPoison || payload instanceof JmsPoisonMessage) {

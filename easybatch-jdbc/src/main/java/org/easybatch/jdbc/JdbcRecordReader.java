@@ -35,7 +35,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 import static org.easybatch.core.util.Utils.checkArgument;
 import static org.easybatch.core.util.Utils.checkNotNull;
@@ -50,9 +50,9 @@ import static org.easybatch.core.util.Utils.checkNotNull;
 public class JdbcRecordReader implements RecordReader {
 
     /**
-     * The logger to use.
+
      */
-    private static final Logger LOGGER = Logger.getLogger(JdbcRecordReader.class.getSimpleName());
+
 
     /**
      * The database connection to use to read data.
@@ -133,7 +133,7 @@ public class JdbcRecordReader implements RecordReader {
         try {
             return resultSet.next();
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "An exception occurred during checking the existence of next database record", e);
+
             return false;
         }
     }
@@ -155,7 +155,7 @@ public class JdbcRecordReader implements RecordReader {
             return "Connection URL: " + connection.getMetaData().getURL() + " | " +
                     "Query string: " + query;
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Unable to get data source name", e);
+
             return "N/A";
         }
     }
